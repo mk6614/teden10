@@ -8,7 +8,7 @@ Izdelava vaše domače naloge bo potekala na sledeči način
 
  1. Z orodjem `git` ustvarite lokalno kopijo tega repozitorija.
 
-        git clone http://github.com/zacasna/teden1
+        git clone http://github.com/scalaFRI/teden1
  2. Postavite se v delovni direktorij tega repozitorija in poženite `sbt`.
  3. V urejevalniku odprite datoteki `Main.scala` in `MainTests.scala`. Prva bo vsebovala izvorno kodo vaših rešitev, druga pa izvorno kodo vaših testov. Pred pisanjem vsake funkcije vam svetujemo, da si najprej zapišete enega ali več testov, ki bodo preverjali pravilnost te funkcije. V prvem tednu imate nekaj testov že zapisanih, sami pa dodajte še nove.
  4. V `sbt` lupini med pisanjem rešitev testirajte, če vaša koda že deluje. Uporabite ukaze `compile`, `test` in `console`.
