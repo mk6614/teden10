@@ -33,6 +33,6 @@ Napišite funkcijo `uniq(s:String): String`, ki za podani niz vrne isti niz, kje
 
 
 ## Naloga 3.:crown:
-Napišite funkcijo `isLycherel(n: BigInt): Boolean`, ki za podano število (števila so lahko zelo velika, zato se uporablja `BigInt`) ugotovi, ali je to  *Lycherelovo število*.
-Več podrobnosti o teh številih lahko najdete v nalogi iz projekta Euler.
+Napišite funkcijo `isLycherel(n: BigInt): Boolean`, ki za podano število (števila so lahko zelo velika, zato se uporablja `BigInt`) ugotovi, ali je to verjetno *Lycherelovo število*.
+Več podrobnosti o teh številih in postopku preverjanja teh števil lahko najdete v nalogi iz projekta Euler.
  https://projecteuler.net/problem=55

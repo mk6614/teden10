@@ -16,6 +16,7 @@ class Week1Tests extends Specification {
 *********
 """)
     }
+    //Add a few more tests
   }
 /* testing the uniq function */
   "The uniq function" should {
@@ -31,11 +32,11 @@ class Week1Tests extends Specification {
   /* testing isLycherel function */
  "The isLycherel function" should {
     "return false if is not Lycherel " in {
-      solution.isLycherel(???) mustEqual(false)
+      solution.isLycherel(956) mustEqual(false)
     }
 
     "return true if it is Lycherel" in {
-      solution.isLycherel(???) mustEqual(true)
+      solution.isLycherel(196) mustEqual(true)
     }
   }
 

@@ -17,7 +17,7 @@ class Main{
 
   // ------------ Naloga 3. ---------------
   //  Napišite funkcijo, ki za podano število ugotovi, ali je to število
-  //  Lycherelovo število
+  //  (verjetno) Lycherelovo število.
   // https://projecteuler.net/problem=55
   def isLycherel(n: BigInt): Boolean = ???
 
