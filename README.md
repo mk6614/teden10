@@ -1,5 +1,6 @@
 # Naloge v desetem tednu
 
+V desetem tednu se bomo lotili izdelave domensko specifičnega jezika za obdelavo tabeliranih podatkov.
 
 ## Naloga 1.
 
