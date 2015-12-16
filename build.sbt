@@ -1,4 +1,4 @@
-name := "TP Scala - teden 1."
+name := "TP Scala - teden 10."
 
 version := "1.0"
 
