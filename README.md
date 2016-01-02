@@ -175,7 +175,7 @@ Podpirajo naj tri operacije (seštevanje, odštevanje, deljenje), funkcija eval 
 
 Enostaven primer izraza:
 ```scala
-3.0 |+ col(1) \/ col(2) |* acc
+3.0 |+ col(1) |/ col(2) |* acc
 ```
 
 ### Primer
