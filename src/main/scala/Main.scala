@@ -47,7 +47,7 @@ case class CsvData(data: Stream[Stream[String]], separator: Char) {
 //Akcije
 trait CsvAction {
   def apply(data: CsvData): CsvData
-  def ->(action: CsvAction): CsvAction = ???
+  def -->(action: CsvAction): CsvAction = ???
 }
 
 // ta razred uporabite za zaporedje akcij
