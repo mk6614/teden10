@@ -1,0 +1,218 @@
+scala> import CSVLang._
+import CSVLang._
+
+scala> val c:CsvData = "resources/ex1.csv"
+c: CsvData = CsvData(Stream(Stream(a, ?), ?),,)
+
+scala> val c:CsvData = ("resources/ex1.csv",',')
+c: CsvData = CsvData(Stream(Stream(a, ?), ?),,)
+
+scala> val c:CsvData = ("resources/ex3.csv",'$')
+c: CsvData = CsvData(Stream(Stream(a, ?), ?),$)
+
+scala> val c:CsvData = ask
+c: CsvData = CsvData(Stream(Stream(1st quarter 2014, ?), ?),,)
+
+scala> val c:CsvData = "1,2,3"
+c: CsvData = CsvData(Stream(Stream(1, ?), ?),,)
+
+scala> val a:CsvAction = "resources/ex1.csv"
+a: CsvAction = DataMerge(CsvData(Stream(Stream(a, ?), ?),,))
+
+scala> val a:CsvAction = revrow
+a: CsvAction = RevAction(false)
+
+scala> val a:CsvAction = (drop, 2)
+a: CsvAction = DropCol(2)
+
+scala> ask >>> "resources/ex1.csv"-> (drop, 2) -> screen
+1st quarter 2014,1147388,6.2,0.2,2.8,2.4,15.0,a,1,2,3,4
+4th quarter 2013,1144544,6.0,0.6,3.0,3.8,15.7,b,1,2,3,4
+3rd quarter 2013,1137327,5.9,1.0,3.5,4.7,17.6,c,1,2,3,4
+2nd quarter 2013,1125990,5.8,0.5,4.9,4.8,17.9,d,1,2,3,4
+1st quarter 2013,1120085,5.5,1.5,3.4,4.1,15.1,e,1,2,3,4
+4th quarter 2012,1103156,5.4,1.5,4.7,4.4,13.7,f,1,2,3,4
+res0: CsvData = CsvData(Stream(Stream(1st quarter 2014, 1147388, 6.2, 0.2, 2.8, 2.4, 15.0, a, 1, 2, 3, 4), Stream(4th quarter 2013, 1144544, 6.0, 0.6, 3.0, 3.8, 15.7, b, 1, 2, 3, 4), Stream(3rd quarter 2013, 1137327, 5.9, 1.0, 3.5, 4.7, 17.6, c, 1, 2, 3, 4), Stream(2nd quarter 2013, 1125990, 5.8, 0.5, 4.9, 4.8, 17.9, d, 1, 2, 3, 4), Stream(1st quarter 2013, 1120085, 5.5, 1.5, 3.4, 4.1, 15.1, e, 1, 2, 3, 4), Stream(4th quarter 2012, 1103156, 5.4, 1.5, 4.7, 4.4, 13.7, f, 1, 2, 3, 4)),,)
+
+scala> ask >>> "resources/ex1.csv"-> (drop, 2) -> screen -> revrow -> screen
+a,1,3,4,a,1,2,3,4
+b,1,3,4,b,1,2,3,4
+c,1,3,4,c,1,2,3,4
+d,1,3,4,d,1,2,3,4
+e,1,3,4,e,1,2,3,4
+f,1,3,4,f,1,2,3,4
+4,3,2,1,a,4,3,1,a
+4,3,2,1,b,4,3,1,b
+4,3,2,1,c,4,3,1,c
+4,3,2,1,d,4,3,1,d
+4,3,2,1,e,4,3,1,e
+4,3,2,1,f,4,3,1,f
+res1: CsvData = CsvData(Stream(Stream(4, 3, 2, 1, a, 4, 3, 1, a), Stream(4, 3, 2, 1, b, 4, 3, 1, b), Stream(4, 3, 2, 1, c, 4, 3, 1, c), Stream(4, 3, 2, 1, d, 4, 3, 1, d), Stream(4, 3, 2, 1, e, 4, 3, 1, e), Stream(4, 3, 2, 1, f, 4, 3, 1, f)),,)
+
+scala> "resources/ex1.csv" >>> screen -> int(5) -> screen
+a,1,2,3,4
+b,1,2,3,4
+c,1,2,3,4
+d,1,2,3,4
+e,1,2,3,4
+f,1,2,3,4
+5,1,2,3,4
+5,1,2,3,4
+5,1,2,3,4
+5,1,2,3,4
+5,1,2,3,4
+5,1,2,3,4
+res2: CsvData = CsvData(Stream(Stream(5, 1, 2, 3, 4), Stream(5, 1, 2, 3, 4), Stream(5, 1, 2, 3, 4), Stream(5, 1, 2, 3, 4), Stream(5, 1, 2, 3, 4), Stream(5, 1, 2, 3, 4)),,)
+
+scala> "resources/ex1.csv" >>> screen -> int(5)|dbl(2.0)|ign -> screen
+<console>:11: error: value | is not a member of CsvData
+              "resources/ex1.csv" >>> screen -> int(5)|dbl(2.0)|ign -> screen
+                                                      ^
+
+scala> "resources/ex1.csv" >>> screen -> (int(5)|dbl(2.0)|ign) -> screen
+a,1,2,3,4
+b,1,2,3,4
+c,1,2,3,4
+d,1,2,3,4
+e,1,2,3,4
+f,1,2,3,4
+5,1.0,2,3,4
+5,1.0,2,3,4
+5,1.0,2,3,4
+5,1.0,2,3,4
+5,1.0,2,3,4
+5,1.0,2,3,4
+res4: CsvData = CsvData(Stream(Stream(5, 1.0, 2, 3, 4), Stream(5, 1.0, 2, 3, 4), Stream(5, 1.0, 2, 3, 4), Stream(5, 1.0, 2, 3, 4), Stream(5, 1.0, 2, 3, 4), Stream(5, 1.0, 2, 3, 4)),,)
+
+scala> "resources/ex1.csv" >>> screen -> (int(_>3,5)|dbl(_>3,2.0)|ign) -> screen
+a,1,2,3,4
+b,1,2,3,4
+c,1,2,3,4
+d,1,2,3,4
+e,1,2,3,4
+f,1,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4
+res5: CsvData = CsvData(Stream(Stream(5, 2.0, 2, 3, 4), Stream(5, 2.0, 2, 3, 4), Stream(5, 2.0, 2, 3, 4), Stream(5, 2.0, 2, 3, 4), Stream(5, 2.0, 2, 3, 4), Stream(5, 2.0, 2, 3, 4)),,)
+
+scala> val e:CsvExpression = 1.0 |* col(3) |+ col(2)
+<console>:10: error: not found: type CsvExpression
+       val e:CsvExpression = 1.0 |* col(3) |+ col(2)
+             ^
+
+scala> val e:CsvExpr = 1.0 |* col(3) |+ col(2)
+e: CsvExpr = PlusExpr(TimesExpr(DoubleConst(1.0),Var(3)),Var(2))
+
+scala> "resources/ex1.csv" >>> screen -> (int(_>3,5)|dbl(_>3,2.0)|ign) -> screen -> col(1) |+ col(4) ->screen
+<console>:11: error: value |+ is not a member of CsvData
+              "resources/ex1.csv" >>> screen -> (int(_>3,5)|dbl(_>3,2.0)|ign) -> screen -> col(1) |+ col(4) ->screen
+                                                                                                  ^
+
+scala> "resources/ex1.csv" >>> screen -> (int(_>3,5)|dbl(_>3,2.0)|ign) -> screen -> (col(1) |+ col(4)) ->screen
+a,1,2,3,4
+b,1,2,3,4
+c,1,2,3,4
+d,1,2,3,4
+e,1,2,3,4
+f,1,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4,6.0
+5,2.0,2,3,4,6.0
+5,2.0,2,3,4,6.0
+5,2.0,2,3,4,6.0
+5,2.0,2,3,4,6.0
+5,2.0,2,3,4,6.0
+res7: CsvData = CsvData(Stream(Stream(5, 2.0, 2, 3, 4, 6.0), Stream(5, 2.0, 2, 3, 4, 6.0), Stream(5, 2.0, 2, 3, 4, 6.0), Stream(5, 2.0, 2, 3, 4, 6.0), Stream(5, 2.0, 2, 3, 4, 6.0), Stream(5, 2.0, 2, 3, 4, 6.0)),,)
+
+scala> "resources/ex1.csv" >>> screen -> (int(_>3,5)|dbl(_>3,2.0)|ign) -> screen -> (1 |+ acc ) ->screen
+a,1,2,3,4
+b,1,2,3,4
+c,1,2,3,4
+d,1,2,3,4
+e,1,2,3,4
+f,1,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4,1.0
+5,2.0,2,3,4,2.0
+5,2.0,2,3,4,3.0
+5,2.0,2,3,4,4.0
+5,2.0,2,3,4,5.0
+5,2.0,2,3,4,6.0
+res8: CsvData = CsvData(Stream(Stream(5, 2.0, 2, 3, 4, 1.0), Stream(5, 2.0, 2, 3, 4, 2.0), Stream(5, 2.0, 2, 3, 4, 3.0), Stream(5, 2.0, 2, 3, 4, 4.0), Stream(5, 2.0, 2, 3, 4, 5.0), Stream(5, 2.0, 2, 3, 4, 6.0)),,)
+
+scala> "resources/ex1.csv" >>> screen -> (int(_>3,5)|dbl(_>3,2.0)|ign) -> screen -> (1 |+ acc )-> (col(4)|+ acc) ->screen
+a,1,2,3,4
+b,1,2,3,4
+c,1,2,3,4
+d,1,2,3,4
+e,1,2,3,4
+f,1,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4,1.0,4.0
+5,2.0,2,3,4,2.0,8.0
+5,2.0,2,3,4,3.0,12.0
+5,2.0,2,3,4,4.0,16.0
+5,2.0,2,3,4,5.0,20.0
+5,2.0,2,3,4,6.0,24.0
+res9: CsvData = CsvData(Stream(Stream(5, 2.0, 2, 3, 4, 1.0, 4.0), Stream(5, 2.0, 2, 3, 4, 2.0, 8.0), Stream(5, 2.0, 2, 3, 4, 3.0, 12.0), Stream(5, 2.0, 2, 3, 4, 4.0, 16.0), Stream(5, 2.0, 2, 3, 4, 5.0, 20.0), Stream(5, 2.0, 2, 3, 4, 6.0, 24.0)),,)
+
+scala> "resources/ex1.csv" >>> screen -> (int(_>3,5)|dbl(_>3,2.0)|ign) -> screen -> (1 |+ acc )-> (col(4)|+ acc) -> (col(6)|/ col(5)) ->screen
+a,1,2,3,4
+b,1,2,3,4
+c,1,2,3,4
+d,1,2,3,4
+e,1,2,3,4
+f,1,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4,1.0,4.0,4.0
+5,2.0,2,3,4,2.0,8.0,4.0
+5,2.0,2,3,4,3.0,12.0,4.0
+5,2.0,2,3,4,4.0,16.0,4.0
+5,2.0,2,3,4,5.0,20.0,4.0
+5,2.0,2,3,4,6.0,24.0,4.0
+res10: CsvData = CsvData(Stream(Stream(5, 2.0, 2, 3, 4, 1.0, 4.0, 4.0), Stream(5, 2.0, 2, 3, 4, 2.0, 8.0, 4.0), Stream(5, 2.0, 2, 3, 4, 3.0, 12.0, 4.0), Stream(5, 2.0, 2, 3, 4, 4.0, 16.0, 4.0), Stream(5, 2.0, 2, 3, 4, 5.0, 20.0, 4.0), Stream(5, 2.0, 2, 3, 4, 6.0, 24.0, 4.0)),,)
+
+scala> "resources/ex1.csv" >>> screen -> (int(_>3,5)|dbl(_>3,2.0)|ign) -> screen -> (1 |+ acc )-> (col(4)|+ acc) -> (col(6)|/ col(5))-> (drop, 5) -> (drop,5)  ->screen
+a,1,2,3,4
+b,1,2,3,4
+c,1,2,3,4
+d,1,2,3,4
+e,1,2,3,4
+f,1,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4
+5,2.0,2,3,4,4.0
+5,2.0,2,3,4,4.0
+5,2.0,2,3,4,4.0
+5,2.0,2,3,4,4.0
+5,2.0,2,3,4,4.0
+5,2.0,2,3,4,4.0
+res11: CsvData = CsvData(Stream(Stream(5, 2.0, 2, 3, 4, 4.0), Stream(5, 2.0, 2, 3, 4, 4.0), Stream(5, 2.0, 2, 3, 4, 4.0), Stream(5, 2.0, 2, 3, 4, 4.0), Stream(5, 2.0, 2, 3, 4, 4.0), Stream(5, 2.0, 2, 3, 4, 4.0)),,)
