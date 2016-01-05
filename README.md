@@ -9,11 +9,11 @@ Za prvi občutek implementiranega jezika  si poglejmo manjši primer.
 
 ```scala
 ("dat1.csv", '\t') >>> (
-"dat2.csv" ->
-revrow ->
-(drop,0) ->
-(swap, 0, 1) ->
-screen ->
+"dat2.csv" -->
+revrow -->
+(drop,0) -->
+(swap, 0, 1) -->
+screen -->
 (out, "out.csv") )
 ```
 
@@ -27,7 +27,7 @@ Razlaga primera:
   6. Izpišemo tabelo na zaslon (screen)
   7. Izpišemo v datoteko "out.csv" (out)
 
-Z operatorjem -> združimo različne akcije v neke vrste cevovod, s katerim obdelujemo posamezne vrstice.
+Z operatorjem --> združimo različne akcije v neke vrste cevovod, s katerim obdelujemo posamezne vrstice.
 
 
 
@@ -91,7 +91,7 @@ Akcije nad  CSV podatki bomo predstavili z razredom
 ```scala
 trait CsvAction{
     def apply(data:CsvData):CsvData
-    def ->(action:CsvAction):CsvAction
+    def -->(action:CsvAction):CsvAction
 }
 ```
 Funkcionalnost akcije je zajeta v funkciji apply, ki sprejme objekt tipa CsvData in vrne spremenjene podatke.
@@ -109,7 +109,7 @@ Vsi CSV podatki (v formatih kot smo jih definirali zgoraj), naj bodo tudi CSV ak
 
 Npr. spodnji primer doda stolpce iz bla2.csv k stolpcem iz bla.csv in vse skupaj izpiše na zaslon.
 ```scala
-"bla.csv" >>> ("bla2.csv",';') -> screen
+"bla.csv" >>> ("bla2.csv",';') --> screen
 ```
 
 ## Naloga 2.:crown:
@@ -183,10 +183,10 @@ Primer programa s katerim lahko dobimo povprečno vrednost nekega stolpca.
 
 ```scala
 "bla.csv" >>>
-ign|ign|dbl(0) ->
-1 + acc ->
-col(3)+acc ->
-col(5) |\ col(4) ->
+ign|ign|dbl(0) -->
+1 + acc -->
+col(3)+acc -->
+col(5) |\ col(4) -->
 (out, "result.csv")
 ```
 Denimo, da so v bla.csv zgolj tri vrstice
